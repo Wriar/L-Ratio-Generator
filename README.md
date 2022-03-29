@@ -4,7 +4,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/Wriar/L-Ratio-Generator)](https://github.com/Wriar/L-Ratio-Generator/stargazers)
 [![Version](https://img.shields.io/badge/Version-2.0-blue)](https://github.com/Wriar/L-Ratio-Generator)
 
-Generate L+RATIO Texts Dynamically
+Generate L+RATIO Texts Dynamically.
+
+Feel free to open PR to add new text to array.
 
 ## Setup
 
