@@ -10,7 +10,8 @@ Feel free to open PR to add new text to array.
 
 ## Setup
 
-Run ``index.html`` and click "Generate"
+1. Open ``index.html`` and enter a number 1-30 of text to generate
+2. Click _Generate New L+Ratio_.
 
 ## Prebuilt
 
