@@ -1,4 +1,7 @@
+
 <!--
+TL;DR - MIT LICENSE
+
 Copyright 2022 Wriar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
@@ -27,41 +30,97 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <title>L + RATIO GENERATOR</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 </head>
 <body>
     <div class="container">
         <h1>L+RATIO GENERATOR</h1><br>
-        <button onclick="newGen();" type="button" class="btn btn-outline-primary">Generate New L+RATIO</button><br><br><hr>
+        
+        <button onclick="newGen();" type="button" class="btn btn-outline-primary">Generate New L+RATIO</button><br><br>
+        <label for="numberInsult">Number of additions (whole number 1-30):</label>
+        <input type="number" id="numberInsult" name="numberInsult" min="1" max="30">
+        <br><br><hr>
+        <div id="finishGen" style="display: none;">
+        <h3 id="lRatioText"></h3>
+        <button id="btnCopy" style="display: none;" onclick="copyText();" type="button" class="btn btn-outline-success"><i id="copyCheck" style="display: none;" class="bi bi-check"></i> Copy to Clipboard</button>
+        <span><strong>OR...</strong></span><br>
+        <button onclick="shareToTwitter();" type="button" class="btn btn-primary"><i class="bi bi-twitter"></i> kek</button>
+        
 
-        <h3 id="lRatioText"></h3><button id="btnCopy" style="display: none;" onclick="copyText();" type="button" class="btn btn-outline-success">Copy!</button><br>
+        <br>
 
         <hr id="hr1" style="display: none;">
-
-        <span class="muted">This code was a speedrun which was completed in 6 minutes 55 seconds.</span>
+        <br><br><br>
+        </div>
+        <span class="muted">This code was a speedrun which was completed in 15 minutes 55 seconds.</span><br>
+        <span class="muted">If you want to download this website <b>right click -> save as</b>.</span>
     </div>
 
     <script>
-        function newGen() {
-        var texts = ["Didn't Ask", "U fell off", "blocked", "unfollowed", "reported", "cringe", "go touch grass", "didn't ask", "cope", "dont care", "cringe", "seethe", "skill issue", "fatherless", "condensed"]
-        const shuffled = texts.sort(() => 0.5 - Math.random());
-        let selected = shuffled.slice(0, 4);
-        //console.log(selected)
 
-        var outputText = "L + Ratio + " + selected[0] + " + " + selected[1] + " + " + selected[2] + " + " + selected[3];
-        console.log(outputText);
+        var currentOutput;
+
+    function newGen() {
+        var numberInsults = document.getElementById('numberInsult').value;
+
+        var totalInt = parseInt(numberInsults)
+
+       
+
+        //Quality Checks
+        if (totalInt > 30 || totalInt < 1 || totalInt == null || isNaN(totalInt)) {
+            alert('Please enter a whole number (integer) to generate between 1-30')
+            console.log("[FAIL] User must enter valid number in range.")
+        } else {
+
+            console.log("Total insults to generate: " + totalInt)
+        //Add any other ratio stuff to this array with a COMMA and QUOTES (follow the example)
+
+        var texts = ["Didn't Ask", "U fell off", "blocked", "unfollowed", "reported", "cringe", "bozo", 
+        "go touch grass", "didn't ask", "cope", "dont care", "on sus", "seethe", "skill issue", 
+        "fatherless", "condensed", "pngtuber", "dream stan", "log off", "dilate", "cancelled", 
+        "no ♥", "karen", "stfu", "stay mad", "ip address: 171.663.99.177", "beta", "denied", "backpilled"
+    , "nolife", "warm applesauce", "*you're"]
+
+
+        const shuffled = texts.sort(() => 0.5 - Math.random());
+        //Splice random array into length for random text
+        let selected = shuffled.slice(0, totalInt);
+        //Construct Random Text. It is zero-index list - so be sure to splice it as the number of words and base it off 0 when accessing the array.
+        var outputText = "L + Ratio";
+        var arrayIterations = 0
+        for (const element of selected) {
+            outputText = outputText + " + " + element 
+            arrayIterations += 1; //use compound assignment
+        }       
+
+
+       
+        console.log("[PASS] Total Array Iterations: " + arrayIterations);
+        //Declare in Global Scope
+        currentOutput = outputText;
 
         document.getElementById('lRatioText').innerHTML = outputText;
         document.getElementById('hr1').style.display = "block";
         document.getElementById('btnCopy').style.display = "block";
+        document.getElementById('finishGen').style.display = "block";
+
+    }
     }
 
     function copyText() {
         var copyText = document.getElementById("lRatioText").innerHTML;
-
-
-
-    navigator.clipboard.writeText(copyText);
-    }    
+       // document.getElementById('copyCheck').style.display = "block";
+        document.getElementById('btnCopy').innerHTML = "<i id='copyCheck' class='bi bi-check'></i> Copied!"
+        navigator.clipboard.writeText(copyText);
+    } 
+    
+    function shareToTwitter() {
+        //haha yes
+        var url = "https://wriar.github.io/L-Ratio-Generator/";
+        var text = currentOutput;
+        window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
     </script>
 </body>
 </html>
